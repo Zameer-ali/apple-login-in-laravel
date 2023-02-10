@@ -1,0 +1,49 @@
+create file private.pem and put this content 
+
+              -----BEGIN EC PARAMETERS-----
+              BggqhkjOPQMBBw==
+              -----END EC PARAMETERS-----
+              -----BEGIN EC PRIVATE KEY-----
+              MHcCAQEEIDAge3iTkrgi4Ci+tNrK8flSSFkd4zWF85/ee4KeZ76loAoGCCqGSM49
+              AwEHoUQDQgAE7snkBAGGQqv+wGVeoZmx0gpVbdpKZ+bRfTWKhh5PWpXant2clAqr
+              ac2z6bsToVE+o0yzie0twvhBSvTsiFOAfw==
+              -----END EC PRIVATE KEY-----
+
+
+
+create client screate id:
+            $team_id = 'FHY5H4AW86';
+            $client_id = 'com.bubbles.user';
+            $key_id = '76MYVDQ268';
+        
+            $key = file_get_contents(public_path('private.pem')); // get content from file which already you create yourself
+        
+            $headers = array(
+                'kid' => $key_id
+            );
+        
+            $claims = array(
+                'iss' => $team_id,
+                'iat' => time(),
+                'exp' => time() + 86400 * 365 * 50,
+                'aud' => 'https://appleid.apple.com',
+                'sub' => $client_id,
+            );
+        
+            $jwt = JWT::encode($claims, $key, 'ES256', null, $headers);
+        
+            return $jwt; // this will return client_secret
+            
+than install
+composer require genealabs/laravel-sign-in-with-apple
+than set these variables in apple
+          SIGN_IN_WITH_APPLE_LOGIN="/apple/login/controller/login/action"
+          SIGN_IN_WITH_APPLE_REDIRECT="/apple/login/controller/callback/action"
+          SIGN_IN_WITH_APPLE_CLIENT_ID=client_id
+          SIGN_IN_WITH_APPLE_CLIENT_SECRET=client_secret 
+
+than use to get user from token
+          $appleUser = Socialite::driver('sign-in-with-apple')->userFromToken($request->token);
+            
+            
+            
