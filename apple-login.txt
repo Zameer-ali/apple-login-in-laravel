@@ -25,7 +25,7 @@ create client screate id:
             $claims = array(
                 'iss' => $team_id,
                 'iat' => time(),
-                'exp' => time() + 86400 * 365 * 50,
+                'exp' => time() + 86400 * 365 * 50, // valid for 50 years
                 'aud' => 'https://appleid.apple.com',
                 'sub' => $client_id,
             );
