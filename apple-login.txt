@@ -12,9 +12,9 @@ create file private.pem and put this content
 
 
 create client screate id:
-            $team_id = 'FHY5H4AW86';
-            $client_id = 'com.bubbles.user';
-            $key_id = '76MYVDQ268';
+            $team_id = '';
+            $client_id = '';
+            $key_id = '';
         
             $key = file_get_contents(public_path('private.pem')); // get content from file which already you create yourself
         
