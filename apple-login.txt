@@ -45,5 +45,16 @@ than set these variables in apple
 than use to get user from token
           $appleUser = Socialite::driver('sign-in-with-apple')->userFromToken($request->token);
             
-            
+
+Sources 
+        https://sarunw.com/posts/sign-in-with-apple-4/#create-a-sign-in-with-apple-private-key
+        https://github.com/GeneaLabs/laravel-sign-in-with-apple
+        
+for generating private.pem
+openssl ecparam -genkey -name prime256v1 -out private.pem
+download openssl into your pc check >openssl version
+not found than 
+set path into system variable in your pc than run command
+openssl ecparam -genkey -name prime256v1 -out private.pem
+
             
